@@ -29,6 +29,7 @@ import hawkey
 import dnf.exceptions
 import dnf.util
 from dnf.cli import commands
+from dnf.cli.demand import CleanCommandLock
 from dnf.cli.option_parser import OptionParser
 from dnf.i18n import _
 
@@ -63,6 +64,7 @@ class InstallCommand(commands.Command):
         demands.available_repos = True
         demands.resolving = True
         demands.root_user = True
+        demands.clean_command_lock = CleanCommandLock.READ
 
         if dnf.util._is_file_pattern_present(self.opts.pkg_specs):
             self.base.conf.optional_metadata_types += ["filelists"]
